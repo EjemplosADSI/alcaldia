@@ -1,0 +1,100 @@
+[2021-07-27T20:18:35.070468+00:00] General.ERROR: Exception  
+[2021-07-27T20:18:35.072808+00:00] General.ERROR: Archivo: C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php  
+[2021-07-27T20:18:35.073143+00:00] General.ERROR: Line: 128  
+[2021-07-27T20:18:35.073377+00:00] General.ERROR: Mensaje: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'tipoDocumento' at row 1  
+[2021-07-27T20:18:35.073669+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Usuarios.php
+            [line] => 301
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => UPDATE usuarios SET 
+            nombres = :nombres, apellidos = :apellidos, tipoDocumento = :tipoDocumento, 
+            documento = :documento, telefono = :telefono, direccion = :direccion, 
+            municipios_id = :municipios_id, correo = :correo, user = :user,  
+            password = :password, rol = :rol, estado = :estado WHERE id = :id
+                    [1] => Array
+                        (
+                            [:id] => 2
+                            [:nombres] => Ventanilla Uno
+                            [:apellidos] => Ventanilla Uno
+                            [:tipoDocumento] => 
+                            [:documento] => 123456
+                            [:telefono] => 3456789
+                            [:direccion] => Centro
+                            [:municipios_id] => 15362
+                            [:correo] => daom89@gmail.com
+                            [:user] => venta1
+                            [:password] => $2y$10$r91Fo/Z9N69JzXDJ8YiN9uh1gNDeHrn8vmcG2NR28PPTPdjnKQq7e
+                            [:rol] => Ventanilla Unica
+                            [:estado] => Activo
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Usuarios.php
+            [line] => 323
+            [function] => save
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => UPDATE usuarios SET 
+            nombres = :nombres, apellidos = :apellidos, tipoDocumento = :tipoDocumento, 
+            documento = :documento, telefono = :telefono, direccion = :direccion, 
+            municipios_id = :municipios_id, correo = :correo, user = :user,  
+            password = :password, rol = :rol, estado = :estado WHERE id = :id
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\UsuariosController.php
+            [line] => 54
+            [function] => update
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\MainController.php
+            [line] => 32
+            [function] => edit
+            [class] => App\Controllers\UsuariosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  

@@ -16,7 +16,7 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
     private int $documento;
     private int $telefono;
     private string $direccion;
-    private int $municipio_id;
+    private int $municipios_id;
     private string $correo;
     private ?string $user;
     private ?string $password;
@@ -40,11 +40,11 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
         $this->setId($usuario['id'] ?? null);
         $this->setNombres($usuario['nombres'] ?? '');
         $this->setApellidos($usuario['apellidos'] ?? '');
-        $this->setTipoDocumento($usuario['tipo_documento'] ?? '');
+        $this->setTipoDocumento($usuario['tipoDocumento'] ?? '');
         $this->setDocumento($usuario['documento'] ?? 0);
         $this->setTelefono($usuario['telefono'] ?? 0);
         $this->setDireccion($usuario['direccion'] ?? '');
-        $this->setMunicipioId($usuario['municipio_id'] ?? 0);
+        $this->setMunicipiosId($usuario['municipios_id'] ?? 0);
         $this->setCorreo($usuario['correo'] ?? '');
         $this->setUser($usuario['user'] ?? null);
         $this->setPassword($usuario['password'] ?? null);
@@ -174,17 +174,17 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
     /**
      * @return int
      */
-    public function getMunicipioId(): int
+    public function getMunicipiosId(): int
     {
-        return $this->municipio_id;
+        return $this->municipios_id;
     }
 
     /**
-     * @param int $municipio_id
+     * @param int $municipios_id
      */
-    public function setMunicipioId(int $municipio_id): void
+    public function setMunicipiosId(int $municipios_id): void
     {
-        $this->municipio_id = $municipio_id;
+        $this->municipios_id = $municipios_id;
     }
 
     /**
@@ -272,8 +272,8 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
      */
     public function getMunicipio(): Municipios|null
     {
-        if (!empty($this->municipio_id)) {
-            return Municipios::searchForId($this->municipio_id) ?? new Municipios();
+        if (!empty($this->municipios_id)) {
+            return Municipios::searchForId($this->municipios_id) ?? new Municipios();
         }
         return null;
     }
@@ -290,7 +290,7 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
             ':documento' =>   $this->getDocumento(),
             ':telefono' =>   $this->getTelefono(),
             ':direccion' =>   $this->getDireccion(),
-            ':municipios_id' =>   $this->getMunicipioId(),
+            ':municipios_id' =>   $this->getMunicipiosId(),
             ':correo' =>  $this->getCorreo(), //YYYY-MM-DD
             ':user' =>  $this->getUser(),
             ':password' =>   $hashPassword,
