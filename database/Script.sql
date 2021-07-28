@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 28-07-2021 a las 02:44:36
+-- Tiempo de generación: 28-07-2021 a las 21:27:23
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 8.0.7
 
@@ -18,15 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
--- -----------------------------------------------------
--- Schema alcaldia
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema alcaldia
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `alcaldia` DEFAULT CHARACTER SET utf8 ;
-USE `alcaldia` ;
+--
+-- Base de datos: `alcaldia`
+--
+CREATE DATABASE IF NOT EXISTS `alcaldia` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `alcaldia`;
 
 -- --------------------------------------------------------
 
@@ -34,17 +30,27 @@ USE `alcaldia` ;
 -- Estructura de tabla para la tabla `conservaciones`
 --
 
-CREATE TABLE `conservaciones` (
-  `id` int(11) NOT NULL,
-  `NumeroCaja` decimal(10,0) NOT NULL,
-  `Carpeta` varchar(45) NOT NULL,
-  `Folio` bigint(20) NOT NULL,
-  `Tomo` varchar(150) NOT NULL,
-  `MedioEntrega` enum('fisico','digital','magnetico') NOT NULL,
-  `Notas` char(150) NOT NULL,
-  `TipoVisibilidad` enum('Privado','Publico') NOT NULL,
-  `Contratos_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `conservaciones` (
+                                                `id` int(11) NOT NULL AUTO_INCREMENT,
+                                                `numeroCaja` decimal(10,0) NOT NULL,
+                                                `carpeta` varchar(45) NOT NULL,
+                                                `folio` bigint(20) NOT NULL,
+                                                `tomo` varchar(150) NOT NULL,
+                                                `medioEntrega` enum('Fisico','Digital','Magnetico') NOT NULL,
+                                                `notas` text NOT NULL,
+                                                `tipoVisibilidad` enum('Privado','Publico') NOT NULL,
+                                                `contratos_id` int(11) NOT NULL,
+                                                PRIMARY KEY (`id`),
+                                                KEY `fk_Conservaciones_Contratos1_idx` (`contratos_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `conservaciones`
+--
+
+INSERT INTO `conservaciones` (`id`, `numeroCaja`, `carpeta`, `folio`, `tomo`, `medioEntrega`, `notas`, `tipoVisibilidad`, `contratos_id`) VALUES
+(1, '1', 'Requerimientos', 13, 'Principal', 'Digital', '                                                                                                                Este un documento muy <font color=\"#000000\"><span style=\"background-color: rgb(255, 255, 0);\">importantísimo </span></font>                                                    ', 'Privado', 1),
+(2, '2', 'Ejecutables', 11, 'Principal', 'Fisico', '                                                                                                                Este un documento NO ES <span style=\"background-color: rgb(255, 0, 0);\">importante                                                    </span>', 'Publico', 1);
 
 -- --------------------------------------------------------
 
@@ -52,19 +58,21 @@ CREATE TABLE `conservaciones` (
 -- Estructura de tabla para la tabla `contratos`
 --
 
-CREATE TABLE `contratos` (
-  `id` int(11) NOT NULL,
-  `tipo` enum('Contratacion Directa','Minima Cuantia','Seleccion Abreviada de Menor Cuantia','Seleccion Abreviada Subasta Inversa','Licitacion Publica') NOT NULL,
-  `siglas` varchar(45) NOT NULL,
-  `objeto` text NOT NULL,
-  `obligaciones` text NOT NULL,
-  `fechaInicio` date NOT NULL,
-  `fechaFinal` date NOT NULL,
-  `valor` decimal(10,0) NOT NULL,
-  `enlaceSecop` varchar(100) NOT NULL,
-  `estado` enum('Activo','Suspendido','Liquidado','Cancelado') NOT NULL,
-  `contratista_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `contratos` (
+                                           `id` int(11) NOT NULL AUTO_INCREMENT,
+                                           `tipo` enum('Contratacion Directa','Minima Cuantia','Seleccion Abreviada de Menor Cuantia','Seleccion Abreviada Subasta Inversa','Licitacion Publica') NOT NULL,
+                                           `siglas` varchar(45) NOT NULL,
+                                           `objeto` text NOT NULL,
+                                           `obligaciones` text NOT NULL,
+                                           `fechaInicio` date NOT NULL,
+                                           `fechaFinal` date NOT NULL,
+                                           `valor` decimal(10,0) NOT NULL,
+                                           `enlaceSecop` varchar(100) NOT NULL,
+                                           `estado` enum('Activo','Suspendido','Liquidado','Cancelado') NOT NULL,
+                                           `contratista_id` int(11) NOT NULL,
+                                           PRIMARY KEY (`id`),
+                                           KEY `fk_Contratos_Usuarios_idx` (`contratista_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `contratos`
@@ -79,15 +87,17 @@ INSERT INTO `contratos` (`id`, `tipo`, `siglas`, `objeto`, `obligaciones`, `fech
 -- Estructura de tabla para la tabla `departamentos`
 --
 
-CREATE TABLE `departamentos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombre` varchar(90) NOT NULL,
-  `region` enum('Caribe','Centro Oriente','Centro Sur','Eje Cafetero - Antioquia','Llano','Pacífico') NOT NULL,
-  `estado` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `departamentos` (
+                                               `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                               `nombre` varchar(90) NOT NULL,
+                                               `region` enum('Caribe','Centro Oriente','Centro Sur','Eje Cafetero - Antioquia','Llano','Pacífico') NOT NULL,
+                                               `estado` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
+                                               `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                               `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                               `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+                                               PRIMARY KEY (`id`),
+                                               UNIQUE KEY `departamentos_nombre_unique` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `departamentos`
@@ -134,16 +144,19 @@ INSERT INTO `departamentos` (`id`, `nombre`, `region`, `estado`, `created_at`, `
 -- Estructura de tabla para la tabla `municipios`
 --
 
-CREATE TABLE `municipios` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombre` varchar(90) COLLATE utf8_bin NOT NULL,
-  `departamento_id` bigint(20) UNSIGNED NOT NULL,
-  `acortado` varchar(40) COLLATE utf8_bin DEFAULT NULL,
-  `estado` enum('Activo','Inactivo') COLLATE utf8_bin NOT NULL DEFAULT 'Activo',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE IF NOT EXISTS `municipios` (
+                                            `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                            `nombre` varchar(90) COLLATE utf8_bin NOT NULL,
+                                            `departamento_id` bigint(20) UNSIGNED NOT NULL,
+                                            `acortado` varchar(40) COLLATE utf8_bin DEFAULT NULL,
+                                            `estado` enum('Activo','Inactivo') COLLATE utf8_bin NOT NULL DEFAULT 'Activo',
+                                            `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                            `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                            `deleted_at` timestamp NULL DEFAULT NULL,
+                                            PRIMARY KEY (`id`),
+                                            KEY `municipios_nombre_index` (`nombre`),
+                                            KEY `municipios_departamento_id_index` (`departamento_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=99774 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `municipios`
@@ -1281,13 +1294,15 @@ INSERT INTO `municipios` (`id`, `nombre`, `departamento_id`, `acortado`, `estado
 -- Estructura de tabla para la tabla `pagos`
 --
 
-CREATE TABLE `pagos` (
-  `id` int(11) NOT NULL,
-  `Numero` bigint(20) NOT NULL,
-  `Valor` decimal(10,0) NOT NULL,
-  `Tipo` enum('Parcial','Total','Avance') NOT NULL,
-  `Fecha` date NOT NULL,
-  `Contratos_id` int(11) NOT NULL
+CREATE TABLE IF NOT EXISTS `pagos` (
+                                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `numero` bigint(20) NOT NULL,
+                                       `valor` decimal(10,0) NOT NULL,
+                                       `tipo` enum('Parcial','Total','Avance') NOT NULL,
+                                       `fecha` date NOT NULL,
+                                       `contratos_id` int(11) NOT NULL,
+                                       PRIMARY KEY (`id`),
+                                       KEY `fk_Pagos_Contratos1_idx` (`contratos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1296,21 +1311,23 @@ CREATE TABLE `pagos` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombres` varchar(30) NOT NULL,
-  `apellidos` varchar(30) NOT NULL,
-  `tipoDocumento` enum('Cedula de Ciudadania','Cedula de  Extranjeria','Pasaporte','Nit') NOT NULL,
-  `documento` bigint(20) NOT NULL,
-  `telefono` bigint(20) NOT NULL,
-  `direccion` varchar(30) NOT NULL,
-  `municipios_id` bigint(20) UNSIGNED NOT NULL,
-  `correo` varchar(60) NOT NULL,
-  `user` varchar(30) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `rol` enum('Administrador','Ventanilla Unica','Contratista') NOT NULL,
-  `estado` enum('Activo','Inactivo') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+                                          `id` int(11) NOT NULL AUTO_INCREMENT,
+                                          `nombres` varchar(30) NOT NULL,
+                                          `apellidos` varchar(30) NOT NULL,
+                                          `tipoDocumento` enum('Cedula de Ciudadania','Cedula de  Extranjeria','Pasaporte','Nit') NOT NULL,
+                                          `documento` bigint(20) NOT NULL,
+                                          `telefono` bigint(20) NOT NULL,
+                                          `direccion` varchar(30) NOT NULL,
+                                          `municipios_id` bigint(20) UNSIGNED NOT NULL,
+                                          `correo` varchar(60) NOT NULL,
+                                          `user` varchar(30) NOT NULL,
+                                          `password` varchar(256) NOT NULL,
+                                          `rol` enum('Administrador','Ventanilla Unica','Contratista') NOT NULL,
+                                          `estado` enum('Activo','Inactivo') NOT NULL,
+                                          PRIMARY KEY (`id`),
+                                          KEY `fk_Usuarios_municipios1_idx` (`municipios_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -1322,93 +1339,6 @@ INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `tipoDocumento`, `document
 (3, 'Contratista 1', 'Contratista 1', 'Cedula de Ciudadania', 9876543, 322135346, 'Centro', 15362, 'daom89@gmail.com', 'contrat1', '$2y$10$WCJdf083.mAIOcLra0EgeeTv62gq4qwcQXd1vlO0p5B0UwKfKHUYa', 'Contratista', 'Activo');
 
 --
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `conservaciones`
---
-ALTER TABLE `conservaciones`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_Conservaciones_Contratos1_idx` (`Contratos_id`);
-
---
--- Indices de la tabla `contratos`
---
-ALTER TABLE `contratos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_Contratos_Usuarios_idx` (`contratista_id`);
-
---
--- Indices de la tabla `departamentos`
---
-ALTER TABLE `departamentos`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `departamentos_nombre_unique` (`nombre`);
-
---
--- Indices de la tabla `municipios`
---
-ALTER TABLE `municipios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `municipios_nombre_index` (`nombre`),
-  ADD KEY `municipios_departamento_id_index` (`departamento_id`);
-
---
--- Indices de la tabla `pagos`
---
-ALTER TABLE `pagos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_Pagos_Contratos1_idx` (`Contratos_id`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_Usuarios_municipios1_idx` (`municipios_id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `conservaciones`
---
-ALTER TABLE `conservaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `contratos`
---
-ALTER TABLE `contratos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `departamentos`
---
-ALTER TABLE `departamentos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
-
---
--- AUTO_INCREMENT de la tabla `municipios`
---
-ALTER TABLE `municipios`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99774;
-
---
--- AUTO_INCREMENT de la tabla `pagos`
---
-ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -1416,31 +1346,31 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `conservaciones`
 --
 ALTER TABLE `conservaciones`
-  ADD CONSTRAINT `fk_Conservaciones_Contratos1` FOREIGN KEY (`Contratos_id`) REFERENCES `contratos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT `fk_Conservaciones_Contratos1` FOREIGN KEY (`contratos_id`) REFERENCES `contratos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  ADD CONSTRAINT `fk_Contratos_Usuarios` FOREIGN KEY (`contratista_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT `fk_Contratos_Usuarios` FOREIGN KEY (`contratista_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `municipios`
 --
 ALTER TABLE `municipios`
-  ADD CONSTRAINT `municipios_departamento_id_foreign` FOREIGN KEY (`departamento_id`) REFERENCES `departamentos` (`id`);
+    ADD CONSTRAINT `municipios_departamento_id_foreign` FOREIGN KEY (`departamento_id`) REFERENCES `departamentos` (`id`);
 
 --
 -- Filtros para la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  ADD CONSTRAINT `fk_Pagos_Contratos1` FOREIGN KEY (`Contratos_id`) REFERENCES `contratos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT `fk_Pagos_Contratos1` FOREIGN KEY (`contratos_id`) REFERENCES `contratos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_Usuarios_municipios1` FOREIGN KEY (`municipios_id`) REFERENCES `municipios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT `fk_Usuarios_municipios1` FOREIGN KEY (`municipios_id`) REFERENCES `municipios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
