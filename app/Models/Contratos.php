@@ -310,7 +310,7 @@ class Contratos extends AbstractDBConnection implements \App\Interfaces\Model
         return null;
     }
 
-    static function searchForId(int $id): ?object
+    static function searchForId(int $id): ?Contratos
     {
         try {
             if ($id > 0) {

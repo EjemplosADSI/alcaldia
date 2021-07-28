@@ -34,7 +34,7 @@ class ContratosController
             if (!empty($this->dataContrato['enlaceSecop']) && !Contratos::contratoRegistrado($this->dataContrato['enlaceSecop'])) {
                 $Contrato = new Contratos ($this->dataContrato);
                 if ($Contrato->insert()) {
-                    unset($_SESSION['frmContratos']);
+                    unset($_SESSION['frmCreateConservacion']);
                     header("Location: ../../views/modules/contratos/index.php?respuesta=success&mensaje=Contrato Registrado");
                 }
             } else {
@@ -50,7 +50,7 @@ class ContratosController
         try {
             $contrato = new Contratos($this->dataContrato);
             if($contrato->update()){
-                unset($_SESSION['frmContratos']);
+                unset($_SESSION['frmEditConservacion']);
             }
             header("Location: ../../views/modules/contratos/show.php?id=" . $contrato->getId() . "&respuesta=success&mensaje=Contrato Actualizado");
         } catch (\Exception $e) {

@@ -454,7 +454,7 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
             'documento' => $this->getDocumento(),
             'telefono' => $this->getTelefono(),
             'direccion' => $this->getDireccion(),
-            'municipio_id' => $this->getMunicipioId(),
+            'municipios_id' => $this->getMunicipiosId(),
             'correo' => $this->getCorreo(),
             'user' => $this->getUser(),
             'password' => $this->getPassword(),

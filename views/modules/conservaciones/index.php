@@ -1,13 +1,13 @@
 <?php
-require_once("../../../app/Controllers/ContratosController.php");
+require_once("../../../app/Controllers/ConservacionesController.php");
 require_once("../../partials/routes.php");
 require_once("../../partials/check_login.php");
 
-use App\Controllers\ContratosController;
+use App\Controllers\ConservacionesController;
 use App\Models\GeneralFunctions;
-use App\Models\Contratos;
+use App\Models\Conservaciones;
 
-$nameModel = "Contrato";
+$nameModel = "Conservacion";
 $pluralModel = $nameModel.'s';
 $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 ?>
@@ -89,63 +89,43 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Contratista</th>
-                                                <th>Tipo</th>
-                                                <th>Siglas</th>
-                                                <th>Objeto</th>
-                                                <th>Obligaciones</th>
-                                                <th>Fecha Inicio</th>
-                                                <th>Fecha Final</th>
-                                                <th>Valor</th>
-                                                <th>Enlace</th>
-                                                <th>Estado</th>
+                                                <th>Caja</th>
+                                                <th>Carpeta</th>
+                                                <th>Folio</th>
+                                                <th>Tomo</th>
+                                                <th>Medio Entrega</th>
+                                                <th>Notas</th>
+                                                <th>Visibilidad</th>
+                                                <th>Contrato</th>
                                                 <th>Acciones</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php
-                                            $arrContratos = ContratosController::getAll();
-                                            /* @var $arrContratos Contratos[] */
-                                            if(is_array($arrContratos) && count($arrContratos)>0)
-                                            foreach ($arrContratos as $contrato) {
+                                            $arrConservaciones = ConservacionesController::getAll();
+                                            /* @var $arrConservaciones Conservaciones[] */
+                                            if(is_array($arrConservaciones) && count($arrConservaciones)>0)
+                                            foreach ($arrConservaciones as $conservacion) {
                                                 ?>
                                                 <tr>
-                                                    <td><?= $contrato->getId(); ?></td>
-                                                    <td><?= $contrato->getContratista()->nombresCompletos(); ?></td>
-                                                    <td><?= $contrato->getTipo(); ?></td>
-                                                    <td><?= $contrato->getSiglas(); ?></td>
-                                                    <td><?= $contrato->getObjeto(); ?></td>
-                                                    <td><?= $contrato->getObligaciones(); ?></td>
-                                                    <td><?= $contrato->getFechaInicio(); ?></td>
-                                                    <td><?= $contrato->getFechaFinal(); ?></td>
-                                                    <td><?= GeneralFunctions::formatCurrency($contrato->getValor()); ?></td>
-                                                    <td><a href="<?= $contrato->getEnlaceSecop(); ?>">Enlace Secop</a></td>
-                                                    <td><?= $contrato->getEstado(); ?></td>
+                                                    <td><?= $conservacion->getId(); ?></td>
+                                                    <td><?= $conservacion->getNumeroCaja(); ?></td>
+                                                    <td><?= $conservacion->getCarpeta(); ?></td>
+                                                    <td><?= $conservacion->getFolio(); ?></td>
+                                                    <td><?= $conservacion->getTomo(); ?></td>
+                                                    <td><?= $conservacion->getMedioEntrega(); ?></td>
+                                                    <td><?= $conservacion->getNotas(); ?></td>
+                                                    <td><?= $conservacion->getTipoVisibilidad(); ?></td>
+                                                    <td><?= $conservacion->getContrato()->getSiglas() . " - " . $conservacion->getContrato()->getId() . " " . $conservacion->getContrato()->getTipo(); ?></td>
                                                     <td>
-                                                        <a href="edit.php?id=<?php echo $contrato->getId(); ?>"
+                                                        <a href="edit.php?id=<?php echo $conservacion->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Actualizar"
                                                            class="btn docs-tooltip btn-primary btn-xs"><i
                                                                     class="fa fa-edit"></i></a>
-                                                        <a href="show.php?id=<?php echo $contrato->getId(); ?>"
+                                                        <a href="show.php?id=<?php echo $conservacion->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Ver"
                                                            class="btn docs-tooltip btn-warning btn-xs"><i
                                                                     class="fa fa-eye"></i></a>
-                                                        <a href="../conservaciones/create.php?idContrato=<?php echo $contrato->getId(); ?>"
-                                                           type="button" data-toggle="tooltip" title="Registrar Documento"
-                                                           class="btn docs-tooltip btn-github btn-xs"><i
-                                                                    class="fa fa-boxes"></i></a>
-                                                        <?php if ($contrato->getEstado() != "Activo") { ?>
-                                                            <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $contrato->getId(); ?>"
-                                                               type="button" data-toggle="tooltip" title="Activar"
-                                                               class="btn docs-tooltip btn-success btn-xs"><i
-                                                                        class="fa fa-check-square"></i></a>
-                                                        <?php } else { ?>
-                                                            <a type="button"
-                                                               href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=cancelar&id=<?= $contrato->getId(); ?>"
-                                                               data-toggle="tooltip" title="Inactivar"
-                                                               class="btn docs-tooltip btn-danger btn-xs"><i
-                                                                        class="fa fa-times-circle"></i></a>
-                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -154,16 +134,14 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                             <tfoot>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Contratista</th>
-                                                <th>Tipo</th>
-                                                <th>Siglas</th>
-                                                <th>Objeto</th>
-                                                <th>Obligaciones</th>
-                                                <th>Fecha Inicio</th>
-                                                <th>Fecha Final</th>
-                                                <th>Valor</th>
-                                                <th>Enlace</th>
-                                                <th>Estado</th>
+                                                <th>Caja</th>
+                                                <th>Carpeta</th>
+                                                <th>Folio</th>
+                                                <th>Tomo</th>
+                                                <th>Medio Entrega</th>
+                                                <th>Notas</th>
+                                                <th>Visibilidad</th>
+                                                <th>Contrato</th>
                                                 <th>Acciones</th>
                                             </tr>
                                             </tfoot>
