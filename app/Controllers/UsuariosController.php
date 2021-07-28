@@ -6,8 +6,6 @@ namespace App\Controllers;
 require (__DIR__.'/../../vendor/autoload.php');
 use App\Models\GeneralFunctions;
 use App\Models\Usuarios;
-use Carbon\Carbon;
-use Carbon\Traits\Creator;
 
 class UsuariosController
 {

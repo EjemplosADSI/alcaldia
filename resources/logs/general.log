@@ -98,3 +98,530 @@
 
 )
   
+[2021-07-28T01:52:35.614933+00:00] General.ERROR: Exception  
+[2021-07-28T01:52:35.616272+00:00] General.ERROR: Archivo: C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php  
+[2021-07-28T01:52:35.616594+00:00] General.ERROR: Line: 102  
+[2021-07-28T01:52:35.616785+00:00] General.ERROR: Mensaje: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '://colombiacompra.gov.co/secop-ii' at line 1  
+[2021-07-28T01:52:35.617197+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php
+            [line] => 102
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 293
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT * FROM contratos where enlaceSecop = https://colombiacompra.gov.co/secop-ii
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 336
+            [function] => search
+            [class] => App\Models\Contratos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM contratos where enlaceSecop = https://colombiacompra.gov.co/secop-ii
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\ContratosController.php
+            [line] => 33
+            [function] => contratoRegistrado
+            [class] => App\Models\Contratos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => https://colombiacompra.gov.co/secop-ii
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\MainController.php
+            [line] => 30
+            [function] => create
+            [class] => App\Controllers\ContratosController
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [files] => Array
+                                (
+                                    [name] => 
+                                    [type] => 
+                                    [tmp_name] => 
+                                    [error] => 4
+                                    [size] => 0
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+  
+[2021-07-28T01:52:36.142095+00:00] General.ERROR: Exception  
+[2021-07-28T01:52:36.142930+00:00] General.ERROR: Archivo: C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php  
+[2021-07-28T01:52:36.143235+00:00] General.ERROR: Line: 128  
+[2021-07-28T01:52:36.143421+00:00] General.ERROR: Mensaje: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1  
+[2021-07-28T01:52:36.143623+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 257
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :id,:tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado
+        )
+                    [1] => Array
+                        (
+                            [:id] => 
+                            [:tipo] => Contratacion Directa
+                            [:siglas] => CDI
+                            [:objeto] => No lo <b>sé&nbsp;</b>
+                            [:obligaciones] => <font color="#000000" style="background-color: rgb(255, 255, 0);"><u>Ninguna</u></font>
+                            [:fechaInicio] => 2021-07-28
+                            [:fechaFinal] => 2021-10-08
+                            [:valor] => $2,350,000
+                            [:enlaceSecop] => https://colombiacompra.gov.co/secop-ii
+                            [:estado] => Activo
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 268
+            [function] => save
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :id,:tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado
+        )
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\ContratosController.php
+            [line] => 35
+            [function] => insert
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\MainController.php
+            [line] => 30
+            [function] => create
+            [class] => App\Controllers\ContratosController
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [files] => Array
+                                (
+                                    [name] => 
+                                    [type] => 
+                                    [tmp_name] => 
+                                    [error] => 4
+                                    [size] => 0
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+  
+[2021-07-28T01:54:42.732473+00:00] General.ERROR: Exception  
+[2021-07-28T01:54:42.733648+00:00] General.ERROR: Archivo: C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php  
+[2021-07-28T01:54:42.733882+00:00] General.ERROR: Line: 128  
+[2021-07-28T01:54:42.734068+00:00] General.ERROR: Mensaje: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1  
+[2021-07-28T01:54:42.734279+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 257
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :id,:tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado
+        )
+                    [1] => Array
+                        (
+                            [:id] => 
+                            [:tipo] => Contratacion Directa
+                            [:siglas] => CDI
+                            [:objeto] => No lo <b>sé&nbsp;</b>
+                            [:obligaciones] => <font color="#000000" style="background-color: rgb(255, 255, 0);"><u>Ninguna</u></font>
+                            [:fechaInicio] => 2021-07-28
+                            [:fechaFinal] => 2021-10-08
+                            [:valor] => $2,350,000
+                            [:enlaceSecop] => https://colombiacompra.gov.co/secop-ii
+                            [:estado] => Activo
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 268
+            [function] => save
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :id,:tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado
+        )
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\ContratosController.php
+            [line] => 35
+            [function] => insert
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\MainController.php
+            [line] => 30
+            [function] => create
+            [class] => App\Controllers\ContratosController
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [files] => Array
+                                (
+                                    [name] => 
+                                    [type] => 
+                                    [tmp_name] => 
+                                    [error] => 4
+                                    [size] => 0
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+  
+[2021-07-28T02:04:19.653916+00:00] General.ERROR: Exception  
+[2021-07-28T02:04:19.655621+00:00] General.ERROR: Archivo: C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php  
+[2021-07-28T02:04:19.655850+00:00] General.ERROR: Line: 128  
+[2021-07-28T02:04:19.656031+00:00] General.ERROR: Mensaje: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens  
+[2021-07-28T02:04:19.656237+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 259
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado,:contratista_id
+        )
+                    [1] => Array
+                        (
+                            [:id] => 
+                            [:tipo] => Contratacion Directa
+                            [:siglas] => CDI
+                            [:objeto] =>                                                         No lo <b>sé </b>                                                    
+                            [:obligaciones] =>                                                         <font color="#000000" style="background-color: rgb(255, 255, 0);"><u>Ninguna</u></font>                                                    
+                            [:fechaInicio] => 2021-07-28
+                            [:fechaFinal] => 2021-10-08
+                            [:valor] => $2,350,000
+                            [:enlaceSecop] => https://colombiacompra.gov.co/secop-ii
+                            [:estado] => Activo
+                            [:contratista_id] => 3
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 270
+            [function] => save
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado,:contratista_id
+        )
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\ContratosController.php
+            [line] => 36
+            [function] => insert
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\MainController.php
+            [line] => 30
+            [function] => create
+            [class] => App\Controllers\ContratosController
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [files] => Array
+                                (
+                                    [name] => 
+                                    [type] => 
+                                    [tmp_name] => 
+                                    [error] => 4
+                                    [size] => 0
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+  
+[2021-07-28T02:05:52.598460+00:00] General.ERROR: Exception  
+[2021-07-28T02:05:52.599606+00:00] General.ERROR: Archivo: C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php  
+[2021-07-28T02:05:52.599812+00:00] General.ERROR: Line: 128  
+[2021-07-28T02:05:52.599994+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1366 Incorrect decimal value: '$2,350,000' for column 'valor' at row 1  
+[2021-07-28T02:05:52.600210+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 259
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :id, :tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado,:contratista_id
+        )
+                    [1] => Array
+                        (
+                            [:id] => 
+                            [:tipo] => Contratacion Directa
+                            [:siglas] => CDI
+                            [:objeto] =>                                                         No lo <b>sé </b>                                                    
+                            [:obligaciones] =>                                                         <font color="#000000" style="background-color: rgb(255, 255, 0);"><u>Ninguna</u></font>                                                    
+                            [:fechaInicio] => 2021-07-28
+                            [:fechaFinal] => 2021-10-08
+                            [:valor] => $2,350,000
+                            [:enlaceSecop] => https://colombiacompra.gov.co/secop-ii
+                            [:estado] => Activo
+                            [:contratista_id] => 3
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Models\Contratos.php
+            [line] => 270
+            [function] => save
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO contratos VALUES (
+            :id, :tipo,:siglas,:objeto,:obligaciones,
+            :fechaInicio,:fechaFinal,:valor,:enlaceSecop,:estado,:contratista_id
+        )
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\ContratosController.php
+            [line] => 36
+            [function] => insert
+            [class] => App\Models\Contratos
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\alcaldia\app\Controllers\MainController.php
+            [line] => 30
+            [function] => create
+            [class] => App\Controllers\ContratosController
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [files] => Array
+                                (
+                                    [name] => 
+                                    [type] => 
+                                    [tmp_name] => 
+                                    [error] => 4
+                                    [size] => 0
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+  

@@ -2,8 +2,6 @@
 
 
 namespace App\Models;
-use Carbon\Carbon;
-use Carbon\Traits\Creator;
 use Exception;
 use JsonSerializable;
 
@@ -357,7 +355,7 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
         return null;
     }
 
-    static function searchForId(int $id): ?object
+    static function searchForId(int $id): ?Usuarios
     {
         try {
             if ($id > 0) {
@@ -413,7 +411,7 @@ class Usuarios extends AbstractDBConnection implements \App\Interfaces\Model
                 Tipo Documento: $this->tipoDocumento, 
                 Documento: $this->documento, 
                 Telefono: $this->telefono, 
-                Direccion: $this->direccion , $this->municipio->getNombre(), 
+                Direccion: $this->direccion , $this->municipios_id, 
                 Correo: $this->correo, 
                 Rol: $this->rol";
     }
