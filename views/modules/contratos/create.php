@@ -103,6 +103,12 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                         <option <?= (!empty($frmSession['tipo']) && $frmSession['tipo'] == "Licitacion Publica") ? "selected" : ""; ?>
                                                                 value="Licitacion Publica">Licitacion Publica
                                                         </option>
+                                                        <option <?= (!empty($frmSession['tipo']) && $frmSession['tipo'] == "Convenios") ? "selected" : ""; ?>
+                                                                value="Convenios">Convenios
+                                                        </option>
+                                                        <option <?= (!empty($frmSession['tipo']) && $frmSession['tipo'] == "Régimen Especial") ? "selected" : ""; ?>
+                                                                value="Régimen Especial">Régimen Especial
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -139,7 +145,6 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                     Inicio</label>
                                                 <div class="col-sm-10">
                                                     <input required type="date"
-                                                           min="<?= Carbon::now()->format('Y-m-d') ?>"
                                                            class="form-control" id="fechaInicio"
                                                            name="fechaInicio" placeholder="Ingrese la fecha de Inicio"
                                                            value="<?= $frmSession['fechaInicio'] ?? '' ?>">
@@ -150,7 +155,6 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                     Final</label>
                                                 <div class="col-sm-10">
                                                     <input required type="date"
-                                                           min="<?= Carbon::now()->format('Y-m-d') ?>"
                                                            class="form-control" id="fechaFinal"
                                                            name="fechaFinal" placeholder="Ingrese la fecha Final"
                                                            value="<?= $frmSession['fechaFinal'] ?? '' ?>">

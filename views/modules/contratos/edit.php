@@ -101,6 +101,8 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                                 <option <?= ($DataContrato->getTipo() == "Seleccion Abreviada de Menor Cuantia") ? "selected" : ""; ?> value="Seleccion Abreviada de Menor Cuantia">Seleccion Abreviada de Menor Cuantia</option>
                                                                 <option <?= ($DataContrato->getTipo() == "Seleccion Abreviada Subasta Inversa") ? "selected" : ""; ?> value="Seleccion Abreviada Subasta Inversa">Seleccion Abreviada Subasta Inversa</option>
                                                                 <option <?= ($DataContrato->getTipo() == "Licitacion Publica") ? "selected" : ""; ?> value="Licitacion Publica">Licitacion Publica</option>
+                                                                <option <?= ($DataContrato->getTipo() == "Convenios") ? "selected" : ""; ?> value="Convenios">Convenios</option>
+                                                                <option <?= ($DataContrato->getTipo() == "Régimen Especial") ? "selected" : ""; ?> value="Régimen Especial">Régimen Especial</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -131,7 +133,7 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                     <div class="form-group row">
                                                         <label for="fechaInicio" class="col-sm-2 col-form-label">Fecha Inicio</label>
                                                         <div class="col-sm-10">
-                                                            <input required type="date" min="<?= Carbon::now()->format('Y-m-d') ?>" class="form-control" id="fechaInicio"
+                                                            <input required type="date" class="form-control" id="fechaInicio"
                                                                    name="fechaInicio" placeholder="Ingrese la fecha de Inicio"
                                                                    value="<?= $DataContrato->getFechaInicio()->toDateString() ?? '' ?>">
                                                         </div>
@@ -139,7 +141,7 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                     <div class="form-group row">
                                                         <label for="fechaFinal" class="col-sm-2 col-form-label">Fecha Final</label>
                                                         <div class="col-sm-10">
-                                                            <input required type="date" min="<?= Carbon::now()->format('Y-m-d') ?>" class="form-control" id="fechaFinal"
+                                                            <input required type="date" class="form-control" id="fechaFinal"
                                                                    name="fechaFinal" placeholder="Ingrese la fecha Final"
                                                                    value="<?= $DataContrato->getFechaFinal()->toDateString() ?? '' ?>">
                                                         </div>
