@@ -75,11 +75,14 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                             <?php if (!empty($_GET["id"]) && isset($_GET["id"])) { ?>
                                 <p>
                                 <?php
+                                    $DataUsuario = UsuariosController::searchForID(["id" => $_GET["id"]]);
+                                    /* @var $DataUsuario Usuarios */
+                                    if (!empty($DataUsuario)) {
+                                        if($_SESSION['UserInSession']['rol'] != 'Administrador' && $DataUsuario->getRol() != "Contratista" ){
+                                            echo GeneralFunctions::getAlertDialog('error', "Sin privilegios para realizar esta accion");
+                                        }else{
+                                ?>
 
-                                $DataUsuario = UsuariosController::searchForID(["id" => $_GET["id"]]);
-                                /* @var $DataUsuario Usuarios */
-                                if (!empty($DataUsuario)) {
-                                    ?>
                                     <!-- form start -->
                                     <div class="card-body">
                                         <form class="form-horizontal" enctype="multipart/form-data" method="post" id="<?= $nameForm ?>"
@@ -203,17 +206,6 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <label for="rol" class="col-sm-2 col-form-label">Rol</label>
-                                                            <div class="col-sm-10">
-                                                                <select required id="rol" name="rol" class="custom-select">
-                                                                    <option <?= ($DataUsuario->getRol() == "Administrador") ? "selected" : ""; ?> value="Administrador">Administrador</option>
-                                                                    <option <?= ($DataUsuario->getRol() == "Ventanilla Unica") ? "selected" : ""; ?> value="Ventanilla Unica">Ventanilla Unica</option>
-                                                                    <option <?= ($DataUsuario->getRol() == "Contratista") ? "selected" : ""; ?> value="Contratista">Contratista</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group row">
                                                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                                             <div class="col-sm-10">
                                                                 <select required id="estado" name="estado" class="custom-select">
@@ -223,6 +215,19 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                             </div>
                                                         </div>
                                                     <?php } ?>
+
+                                                    <div class="form-group row">
+                                                        <label for="rol" class="col-sm-2 col-form-label">Rol</label>
+                                                        <div class="col-sm-10">
+                                                            <select required id="rol" name="rol" class="custom-select">
+                                                                <?php if($_SESSION['UserInSession']['rol'] == 'Administrador'){ ?>
+                                                                    <option <?= ($DataUsuario->getRol() == "Administrador") ? "selected" : ""; ?> value="Administrador">Administrador</option>
+                                                                    <option <?= ($DataUsuario->getRol() == "Ventanilla Unica") ? "selected" : ""; ?> value="Ventanilla Unica">Ventanilla Unica</option>
+                                                                <?php } ?>
+                                                                <option <?= ($DataUsuario->getRol() == "Contratista") ? "selected" : ""; ?> value="Contratista">Contratista</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <hr>
@@ -232,7 +237,8 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                     </div>
                                     <!-- /.card-body -->
 
-                                <?php } else { ?>
+                                <?php }
+                                    } else { ?>
                                     <div class="alert alert-danger alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                                             &times;

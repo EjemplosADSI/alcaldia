@@ -174,16 +174,6 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="rol" class="col-sm-2 col-form-label">Rol</label>
-                                                    <div class="col-sm-10">
-                                                        <select required id="rol" name="rol" class="custom-select">
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Administrador") ? "selected" : ""; ?> value="Administrador">Administrador</option>
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Ventanilla Unica") ? "selected" : ""; ?> value="Ventanilla Unica">Ventanilla Unica</option>
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Contratista") ? "selected" : ""; ?> value="Contratista">Contratista</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
                                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                                     <div class="col-sm-10">
                                                         <select required id="estado" name="estado" class="custom-select">
@@ -193,6 +183,18 @@ $frmSession = $_SESSION[$nameForm] ?? NULL;
                                                     </div>
                                                 </div>
                                             <?php } ?>
+                                            <div class="form-group row">
+                                                <label for="rol" class="col-sm-2 col-form-label">Rol</label>
+                                                <div class="col-sm-10">
+                                                    <select required id="rol" name="rol" class="custom-select">
+                                                        <?php if($_SESSION['UserInSession']['rol'] == 'Administrador'){ ?>
+                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Administrador") ? "selected" : ""; ?> value="Administrador">Administrador</option>
+                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Ventanilla Unica") ? "selected" : ""; ?> value="Ventanilla Unica">Ventanilla Unica</option>
+                                                        <?php } ?>
+                                                        <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Contratista") ? "selected" : ""; ?> value="Contratista">Contratista</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>

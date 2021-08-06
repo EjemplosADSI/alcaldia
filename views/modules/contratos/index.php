@@ -122,14 +122,14 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                     <td><a href="<?= $contrato->getEnlaceSecop(); ?>">Enlace Secop</a></td>
                                                     <td><?= $contrato->getEstado(); ?></td>
                                                     <td>
-                                                        <a href="edit.php?id=<?php echo $contrato->getId(); ?>"
-                                                           type="button" data-toggle="tooltip" title="Actualizar"
-                                                           class="btn docs-tooltip btn-primary btn-xs"><i
-                                                                    class="fa fa-edit"></i></a>
                                                         <a href="show.php?id=<?php echo $contrato->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Ver"
                                                            class="btn docs-tooltip btn-warning btn-xs"><i
                                                                     class="fa fa-eye"></i></a>
+                                                        <a href="edit.php?id=<?php echo $contrato->getId(); ?>"
+                                                           type="button" data-toggle="tooltip" title="Actualizar"
+                                                           class="btn docs-tooltip btn-primary btn-xs"><i
+                                                                    class="fa fa-edit"></i></a>
                                                         <?php if ($contrato->getEstado() != "Activo") { ?>
                                                             <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $contrato->getId(); ?>"
                                                                type="button" data-toggle="tooltip" title="Activar"

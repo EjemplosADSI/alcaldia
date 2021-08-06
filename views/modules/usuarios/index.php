@@ -119,25 +119,45 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                     <td><?= $usuario->getRol(); ?></td>
                                                     <td><?= $usuario->getEstado(); ?></td>
                                                     <td>
-                                                        <a href="edit.php?id=<?php echo $usuario->getId(); ?>"
-                                                           type="button" data-toggle="tooltip" title="Actualizar"
-                                                           class="btn docs-tooltip btn-primary btn-xs"><i
-                                                                    class="fa fa-edit"></i></a>
                                                         <a href="show.php?id=<?php echo $usuario->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Ver"
                                                            class="btn docs-tooltip btn-warning btn-xs"><i
                                                                     class="fa fa-eye"></i></a>
-                                                        <?php if ($usuario->getEstado() != "Activo") { ?>
-                                                            <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $usuario->getId(); ?>"
-                                                               type="button" data-toggle="tooltip" title="Activar"
-                                                               class="btn docs-tooltip btn-success btn-xs"><i
-                                                                        class="fa fa-check-square"></i></a>
-                                                        <?php } else { ?>
-                                                            <a type="button"
-                                                               href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=inactivate&id=<?= $usuario->getId(); ?>"
-                                                               data-toggle="tooltip" title="Inactivar"
-                                                               class="btn docs-tooltip btn-danger btn-xs"><i
-                                                                        class="fa fa-times-circle"></i></a>
+
+                                                        <?php if($_SESSION['UserInSession']['rol'] == 'Administrador' ){ ?>
+                                                            <a href="edit.php?id=<?php echo $usuario->getId(); ?>"
+                                                               type="button" data-toggle="tooltip" title="Actualizar"
+                                                               class="btn docs-tooltip btn-primary btn-xs"><i
+                                                                        class="fa fa-edit"></i></a>
+                                                            <?php if ($usuario->getEstado() != "Activo") { ?>
+                                                                <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $usuario->getId(); ?>"
+                                                                   type="button" data-toggle="tooltip" title="Activar"
+                                                                   class="btn docs-tooltip btn-success btn-xs"><i
+                                                                            class="fa fa-check-square"></i></a>
+                                                            <?php } else { ?>
+                                                                <a type="button"
+                                                                   href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=inactivate&id=<?= $usuario->getId(); ?>"
+                                                                   data-toggle="tooltip" title="Inactivar"
+                                                                   class="btn docs-tooltip btn-danger btn-xs"><i
+                                                                            class="fa fa-times-circle"></i></a>
+                                                            <?php } ?>
+                                                        <?php } else if($usuario->getRol() == 'Contratista' ){ ?>
+                                                            <a href="edit.php?id=<?php echo $usuario->getId(); ?>"
+                                                               type="button" data-toggle="tooltip" title="Actualizar"
+                                                               class="btn docs-tooltip btn-primary btn-xs"><i
+                                                                        class="fa fa-edit"></i></a>
+                                                            <?php if ($usuario->getEstado() != "Activo") { ?>
+                                                                <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $usuario->getId(); ?>"
+                                                                   type="button" data-toggle="tooltip" title="Activar"
+                                                                   class="btn docs-tooltip btn-success btn-xs"><i
+                                                                            class="fa fa-check-square"></i></a>
+                                                            <?php } else { ?>
+                                                                <a type="button"
+                                                                   href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=inactivate&id=<?= $usuario->getId(); ?>"
+                                                                   data-toggle="tooltip" title="Inactivar"
+                                                                   class="btn docs-tooltip btn-danger btn-xs"><i
+                                                                            class="fa fa-times-circle"></i></a>
+                                                            <?php } ?>
                                                         <?php } ?>
                                                     </td>
                                                 </tr>

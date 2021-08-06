@@ -31,6 +31,15 @@ class UsuariosController
 
     public function create() {
         try {
+
+            if($this->dataUsuario['rol'] != "Contratista"){
+                if(!empty($this->dataUsuario['rol'])){
+                    header("Location: ../../views/modules/usuarios/create.php?respuesta=error&mensaje=User Obligatorio");
+                }else{
+                    header("Location: ../../views/modules/usuarios/create.php?respuesta=error&mensaje=Password Obligatorio");
+                }
+            }
+
             if (!empty($this->dataUsuario['documento']) && !Usuarios::usuarioRegistrado($this->dataUsuario['documento'])) {
                 $Usuario = new Usuarios ($this->dataUsuario);
                 if ($Usuario->insert()) {
